@@ -1,6 +1,6 @@
 # traestanley.com
 
-Personal site of Trae Stanley: essays and notes on making video people trust, with work produced at [Audion](https://www.audion.energy).
+Personal site of Trae Stanley: essays and notes on making video that people trust, with work produced at [Audion](https://www.audion.energy).
 
 The site is plain HTML, CSS and JavaScript, with no build step. GitHub Pages publishes this branch (`traestanley.com`) to https://traestanley.com.
 

@@ -10,7 +10,7 @@ const LINKEDIN="https://www.linkedin.com/in/traestanley";
 const AUD="https://www.audion.energy", AUDWORK="https://www.audion.energy/our-work";
 const CLIPS = [
   {id:"title",track:"V1",kind:"me",start:0,dur:8,name:"Title card",
-   scene:`<div class="scene s-title"><div><h1>TRAE STANLEY</h1><p>Notes on making video people trust.</p><div class="ind"><span>Storytelling</span><span>Trust on camera</span><span>AI &amp; authenticity</span><span>Energy</span><span>Associations</span></div></div></div>`,
+   scene:`<div class="scene s-title"><div><h1>TRAE STANLEY</h1><p>Notes on making video that people trust.</p><div class="ind"><span>Storytelling</span><span>Trust on camera</span><span>AI &amp; authenticity</span><span>Energy</span><span>Associations</span></div></div></div>`,
    title:"Trae Stanley",desc:"I’m a video producer at Audion in Houston. I spend my days filming energy executives, safety crews, educators and association leaders. Here I write about what that work teaches me: how people earn trust on camera, and what changes now that anyone can generate video.",
    meta:[["Day job","Producer, Audion"],["Based in","Sugar Land · Houston"],["Writes about","Storytelling, trust, AI and authenticity, industrial and association video"]],
    act:[["Read the latest essay","essay1"],["Audion ↗",AUD]]},
