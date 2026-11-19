@@ -28,7 +28,7 @@ CLIPS.forEach(c=>{
 });
 const li=(c)=>c.url?`<li><a href="${c.url}">${c.title}</a></li>`:`<li><button data-go="${c.id}">${c.title}</button>${c.soon?' <span class="tag">Coming soon</span>':''}</li>`;
 $("#list-a").innerHTML=CLIPS.filter(c=>c.kind==="essay").map(li).join("");
-$("#list-b").innerHTML=CLIPS.filter(c=>c.kind==="film").map(li).join("")+`<li><a href="https://www.audion.energy" target="_blank" rel="noopener">More at audion.energy ↗</a></li>`;
+$("#list-b").innerHTML=CLIPS.filter(c=>c.kind==="film").map(li).join("")+`<li><a href="https://www.audion.energy" target="_blank" rel="noopener">More at audion.energy ↗︎</a></li>`;
 
 function renderInsp(c){
   if(c.url && !c.act.some(a=>a[1]===c.url)) c.act=[["Read the essay",c.url],...c.act];
@@ -49,7 +49,7 @@ function select(id,movePlayhead){
   renderInsp(c);
   if(movePlayhead) setT(c.start);
   const el=document.querySelector(`.clip[data-id="${id}"]`), sc=$(".tl-scroll");
-  if(el){ const r=el.offsetLeft+116; if(r<sc.scrollLeft+116||r>sc.scrollLeft+sc.clientWidth-80) sc.scrollTo({left:r-160,behavior:"smooth"}); }
+  if(el){ const hw=document.querySelector(".heads").offsetWidth, r=el.offsetLeft+hw; if(r<sc.scrollLeft+hw||r>sc.scrollLeft+sc.clientWidth-80) sc.scrollTo({left:Math.max(0,r-hw-24),behavior:"smooth"}); }
 }
 function setT(s){ t=Math.max(0,Math.min(LEN-0.001,s)); ph.style.left=pct(t); tcEl.textContent=tc(t); }
 function step(d){ stop(); const i=cur?ORDER.indexOf(cur):-1; const n=ORDER[(i+d+ORDER.length)%ORDER.length]; select(n.id,true); }

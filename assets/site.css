@@ -156,3 +156,43 @@ footer a{color:var(--muted);text-decoration:none;margin-right:14px}
 .skip{position:absolute;left:-999px;top:8px;z-index:50;background:var(--fg);color:var(--bg);padding:8px 12px;border-radius:4px}
 .skip:focus{left:12px}
 
+
+/* summary lists: no button padding, keep "Coming soon" beside its title */
+.plain li button{padding:0;font:inherit;color:inherit}
+.plain li{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px}
+.plain li .tag{white-space:nowrap}
+
+/* phones: screen, then timeline, then details */
+@media (max-width:640px){
+  main{display:flex;flex-direction:column}
+  .suite{display:contents}
+  .suite>.pane:first-child{order:1}
+  .tl{order:2}
+  .insp{order:3;border-top:1px solid var(--line)}
+  .plain{order:4}
+  .s-title .ind{display:none}
+  .s-title p{margin-top:8px}
+  .tl-inner{min-width:900px;grid-template-columns:64px 1fr}
+  .heads div{height:40px;padding:0 8px;gap:6px;font-size:10px}
+  .heads .rul{height:28px}
+  .lane{height:40px}
+  .clip{font-size:11px;padding:0 7px}
+  .clip.thumb{padding-left:7px}
+  .tl-foot span:first-child{display:none}
+  .insp-body{padding:16px}
+  .insp h2{font-size:22px}
+  .insp p.desc{font-size:16px}
+  .insp dl{font-size:14px}
+  .plain{padding-block:40px 48px}
+  .heads div b{display:none}
+  .s-essay{padding:10% 9%}
+  .s-essay p{display:none}
+  .s-essay h2{font-size:clamp(20px,6.4vw,30px);margin:.35em 0 0}
+  .s-note{padding:10%}
+  .s-note q{font-size:clamp(17px,5.4vw,26px)}
+  .s-film .big{font-size:clamp(24px,8vw,40px)}
+  .s-contact h2{font-size:clamp(34px,11vw,56px)}
+  .ovl{font-size:9px}
+  .ovl .d{font-size:11px}
+  .ovl .a,.ovl .b{top:8px}.ovl .c,.ovl .d{bottom:8px}.ovl .a,.ovl .c{left:10px}.ovl .b,.ovl .d{right:10px}
+}
