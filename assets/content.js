@@ -8,7 +8,7 @@ const KIND = {
 /* Site content. To add an essay: copy an essay entry, change id/name/title/desc, set url to its page, and give it a free start time on V1. */
 const LINKEDIN="https://www.linkedin.com/in/traestanley";
 const AUD="https://www.audion.energy", AUDWORK="https://www.audion.energy/our-work";
-const NOT_ON_AUDION=["NJ0TVFfnp4A","WXbC_jUZPZs"]; // videos not shown on Audion's work page
+const NOT_ON_AUDION=["NJ0TVFfnp4A","WXbC_jUZPZs","EJMjhzlRwcU"]; // videos not shown on Audion's work page
 const YT={thumb:id=>`https://i.ytimg.com/vi/${id}/hqdefault.jpg`, still:id=>`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`, watch:id=>`https://www.youtube.com/watch?v=${id}`};
 const CLIPS = [
   {id:"title",track:"V1",kind:"me",start:0,dur:8,name:"Title card",
@@ -47,6 +47,10 @@ const CLIPS = [
      "The pandemic took a young father’s job managing a bar. Envoy Mortgage’s Gift of Home program shows up on his front lawn to pay his family’s next mortgage payment, and he finds out by reading the letter out loud.",
      "A knock on the door, and one family’s mortgage paid.",
      "A reveal like this happens once. Having him read the letter aloud lets the audience find out at the same moment he does, and the cameras are already in place to catch it."],
+    ["EJMjhzlRwcU","Tenaris · 400 days without an accident","Tenaris","Energy · Safety",
+     "Tenaris’ Coiled Tubes plant went more than 400 days without a recordable accident. The story is told by every level of the plant, from supervisors to the vice president, and each of them credits everyone else.",
+     "400 days without an accident, told by the people who did it.",
+     "End on the strongest line instead of a logo: “The product is the second most important thing we have. The most important thing is our people.”"],
     ["idK-jLTs3v8","DXPE · Room for the next 100 years","DXP Enterprises","Industrial",
      "DXP opened a 50-acre fabrication campus outside Houston. Underneath the square footage is the real story: a century-old company securing its next hundred years, told by the people who work there.",
      "A 100-year-old company, making room for the next 100.",
@@ -78,7 +82,7 @@ const CLIPS = [
      "A safety guidelines video for Endress + Hauser, made for people who will actually work by it.",
      "Safety guidance crews actually watch.",""]
   ].map(([yt,title,client,industry,desc,big,call],i)=>({
-    id:"film"+(i+1),track:"V2",kind:"film",start:8+i*9,dur:9,name:title,yt,img:YT.thumb(yt),url:YT.watch(yt),call,
+    id:"film"+(i+1),track:"V2",kind:"film",start:8+i*8,dur:8,name:title,yt,img:YT.thumb(yt),url:YT.watch(yt),call,
     scene:`<div class="scene s-film s-yt"><img class="yt-still" src="${YT.still(yt)}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${YT.thumb(yt)}'"><div class="yt-cap"><div class="big">${big}</div><button class="pb" type="button" data-play="${yt}" aria-label="Play ${title.replace(/"/g,"")}">Play</button></div></div>`,
     title,desc,
     meta:[["Client",client],["Industry",industry]],
