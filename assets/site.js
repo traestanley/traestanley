@@ -36,7 +36,7 @@ function renderInsp(c){
   const k=KIND[c.kind];
   insp.style.setProperty("--k",k.color);
   insp.innerHTML=`<div class="kind mono"><i></i>${k.label}${c.soon?' <span class="tag">Coming soon</span>':''}</div>
-    <h2>${c.title}</h2><p class="desc">${c.desc}</p>
+    <h2>${c.title}</h2><p class="desc">${c.desc}</p>${c.call?`<div class="call"><span class="mono">Producing call</span><p>${c.call}</p></div>`:""}
     <dl>${[["In / Out",tc(c.start)+" – "+tc(c.start+c.dur)],...c.meta].map(([a,b])=>`<dt class="mono">${a}</dt><dd>${b}</dd>`).join("")}</dl>
     ${c.act.length?`<div class="act">${c.act.map(([l,go],i)=>/^(#|http)/.test(go)?`<a ${i?'class="sec"':''} href="${go}"${go.startsWith("http")?' target="_blank" rel="noopener"':''}>${l}</a>`:`<button ${i?'class="sec"':''} data-go="${go}">${l}</button>`).join("")}</div>`:""}`;
   $("#i-count").textContent=(ORDER.indexOf(c)+1)+" / "+ORDER.length;

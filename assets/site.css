@@ -100,6 +100,9 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .insp .kind i{width:10px;height:10px;border-radius:2px;background:var(--k)}
 .insp h2{margin:0;font:800 25px/1.1 var(--f-display);font-stretch:82%;text-wrap:balance}
 .insp p.desc{margin:0;color:#C8CCCF;font-size:16px}
+.insp .call{border-left:2px solid var(--k);padding:2px 0 2px 14px;display:grid;gap:6px}
+.insp .call .mono{color:var(--muted)}
+.insp .call p{margin:0;font-size:15.5px;color:#C8CCCF;font-style:italic}
 .insp dl{display:grid;grid-template-columns:auto 1fr;gap:8px 14px;margin:0;padding-top:14px;border-top:1px solid var(--line);font-size:14px}
 .insp dt{color:var(--dim)}
 .insp dd{margin:0;font-variant-numeric:tabular-nums;min-width:0;overflow-wrap:anywhere}

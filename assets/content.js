@@ -8,6 +8,7 @@ const KIND = {
 /* Site content. To add an essay: copy an essay entry, change id/name/title/desc, set url to its page, and give it a free start time on V1. */
 const LINKEDIN="https://www.linkedin.com/in/traestanley";
 const AUD="https://www.audion.energy", AUDWORK="https://www.audion.energy/our-work";
+const NOT_ON_AUDION=["NJ0TVFfnp4A"]; // videos not shown on Audion's work page
 const YT={thumb:id=>`https://i.ytimg.com/vi/${id}/mqdefault.jpg`, still:id=>`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`, watch:id=>`https://www.youtube.com/watch?v=${id}`};
 const CLIPS = [
   {id:"title",track:"V1",kind:"me",start:0,dur:8,name:"Title card",
@@ -38,21 +39,46 @@ const CLIPS = [
    meta:[["Why now","Short native video and recurring series formats are growing on LinkedIn"],["Read time","5 min"]],act:[]},
 
   ...[
-    ["idK-jLTs3v8","DXPE · Brand video","DXP Enterprises","Industrial","A brand film for DXP Enterprises, the Houston-based industrial distributor.","An industrial company, told as a story."],
-    ["sXwlyKkVntc","Tenaris · Wedge 529","Tenaris","Energy · Product","A product video for Tenaris’ Wedge 529 connection. Making a technical oilfield product easy to follow is the job I care about most.","A technical product, explained."],
-    ["_oemJ8GP1AI","Tenaris · Coiled tubing, made and shipped","Tenaris","Energy · Manufacturing","How Tenaris coiled tubing is made and shipped, filmed on the plant floor. Shooting around live operations is where my thinking on recruiting video for the trades started.","From the plant floor to the field."],
-    ["4-IUkT454W0","AWS · Energy Symposium","AWS","Energy · Tech · Events","Highlights from the AWS Energy Symposium. Events like this are the source material for “Your conference is a year of content.”","A symposium, made to outlast the day."],
-    ["RvRMN0xcNqU","Halliburton Labs · Denver Pitch Day","Halliburton Labs","Energy · Startups","Highlights from Halliburton Labs’ Pitch Day in Denver, where energy startups pitch to industry leaders. Rooms like this one are where “What I’ve learned putting CEOs on camera” comes from.","Founders under pressure, on camera."],
-    ["5n7nfnLqkE4","Halliburton Labs · New Orleans recap","Halliburton Labs","Energy · Startups · Events","A recap of Halliburton Labs’ program in New Orleans.","Two days in New Orleans, in a few minutes."],
-    ["5IGhnPHvL8U","Halliburton Labs · Brand video","Halliburton Labs","Energy · Startups","A brand film for Halliburton Labs, the energy-industry startup accelerator.","What an accelerator actually does."],
-    ["wucQ8KVGqrk","Halliburton · Fractech Expo","Halliburton","Energy · Trade show","Coverage of Halliburton at the Fractech Expo.","A trade-show floor, cut for people who weren’t there."],
-    ["OXp_9dxsbAE","Endress + Hauser · Safety guidelines","Endress + Hauser","Industrial · Safety","A safety guidelines video for Endress + Hauser, made for people who will actually work by it.","Safety guidance crews actually watch."]
-  ].map(([yt,title,client,industry,desc,big],i)=>({
-    id:"film"+(i+1),track:"V2",kind:"film",start:8+i*10,dur:10,name:title,yt,img:YT.thumb(yt),url:YT.watch(yt),
+    ["NJ0TVFfnp4A","AmelUSA · Students who work by day","Amel Association Houston","Nonprofit · Education",
+     "Immigrant and refugee students at a Houston high school work day jobs and go to school at night. A coaching program run by people who were once in their shoes helps them aim higher, and the students tell it in their own words.",
+     "Students who work by day and study at night.",
+     "Let the students speak for themselves, subtitled, instead of narrating over them. “Last year I couldn’t talk the English. Right now I understand the lesson.”"],
+    ["idK-jLTs3v8","DXPE · Room for the next 100 years","DXP Enterprises","Industrial",
+     "DXP opened a 50-acre fabrication campus outside Houston. Underneath the square footage is the real story: a century-old company securing its next hundred years, told by the people who work there.",
+     "A 100-year-old company, making room for the next 100.",
+     "Let floor workers and project managers explain why the building matters. The line that lands comes from a 25-year employee: “It’s our home away from home.”"],
+    ["_oemJ8GP1AI","Tenaris · 63 kilometers for the North Sea","Tenaris","Energy · Manufacturing",
+     "The Troll Field holds 40% of Norway’s gas and supplies about 8% of what the EU uses. This is how a Houston plant produced and shipped 63 kilometers of coated coiled line pipe for it, on a deadline.",
+     "Europe’s gas, 63 kilometers of pipe, one Houston team.",
+     "Open on the stakes, Europe’s energy supply, before a single spec, so the pipe means something."],
+    ["wucQ8KVGqrk","Halliburton · “Everything you’ll see today, we do now”","Halliburton","Energy · Trade show",
+     "Halliburton’s Frac Technology Showcase, built around one line from its CEO: nothing on display is a someday idea. The footage across the showcase floor backs it up.",
+     "“Everything you’ll see today, we do now.”",
+     "Build the whole piece on a single quote, and let the drone and floor footage prove it."],
+    ["sXwlyKkVntc","Tenaris · Wedge 529","Tenaris","Energy · Product",
+     "A product video for Tenaris’ Wedge 529 connection, making a technical oilfield product easy to follow.",
+     "A technical product, explained.",""],
+    ["4-IUkT454W0","AWS · Energy Symposium","AWS","Energy · Tech · Events",
+     "Highlights from the AWS Energy Symposium. Events like this are the source material for “Your conference is a year of content.”",
+     "A symposium, made to outlast the day.",""],
+    ["RvRMN0xcNqU","Halliburton Labs · Denver Pitch Day","Halliburton Labs","Energy · Startups",
+     "Highlights from Halliburton Labs’ Pitch Day in Denver, where energy startups pitch to industry leaders. Rooms like this one are where “What I’ve learned putting CEOs on camera” comes from.",
+     "Founders under pressure, on camera.",""],
+    ["5n7nfnLqkE4","Halliburton Labs · New Orleans recap","Halliburton Labs","Energy · Startups · Events",
+     "A recap of Halliburton Labs’ program in New Orleans.",
+     "Two days in New Orleans, in a few minutes.",""],
+    ["5IGhnPHvL8U","Halliburton Labs · Brand video","Halliburton Labs","Energy · Startups",
+     "A brand film for Halliburton Labs, the energy-industry startup accelerator.",
+     "What an accelerator actually does.",""],
+    ["OXp_9dxsbAE","Endress + Hauser · Safety guidelines","Endress + Hauser","Industrial · Safety",
+     "A safety guidelines video for Endress + Hauser, made for people who will actually work by it.",
+     "Safety guidance crews actually watch.",""]
+  ].map(([yt,title,client,industry,desc,big,call],i)=>({
+    id:"film"+(i+1),track:"V2",kind:"film",start:8+i*10,dur:10,name:title,yt,img:YT.thumb(yt),url:YT.watch(yt),call,
     scene:`<div class="scene s-film s-yt"><img class="yt-still" src="${YT.still(yt)}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${YT.thumb(yt)}'"><div class="yt-cap"><div class="big">${big}</div><button class="pb" type="button" data-play="${yt}" aria-label="Play ${title.replace(/"/g,"")}">Play</button></div></div>`,
     title,desc,
     meta:[["Client",client],["Industry",industry]],
-    act:[["Watch on YouTube ↗︎",YT.watch(yt)],["Audion’s work ↗︎",AUDWORK]]
+    act:[["Watch on YouTube ↗︎",YT.watch(yt)],...(NOT_ON_AUDION.includes(yt)?[]:[["Audion’s work ↗︎",AUDWORK]])]
   })),
 
   {id:"note1",track:"A1",kind:"note",start:20,dur:6,name:"Note",
