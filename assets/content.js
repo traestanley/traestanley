@@ -1,4 +1,4 @@
-const FPS = 24, LEN = 150;
+const FPS = 24, LEN = 120;
 const abs = p => new URL(p, document.baseURI).href; // full URLs, so CSS backgrounds resolve from the page
 const IMG = {}; // project stills, e.g. {name: abs("assets/img/name.jpg")}; use as img:IMG.name and in the scene background
 const KIND = {
@@ -70,27 +70,9 @@ const CLIPS = [
     ["wucQ8KVGqrk","Halliburton · “Everything you’ll see today, we do now”","Halliburton","Energy · Trade show",
      "Halliburton’s Frac Technology Showcase, built around one line from its CEO: nothing on display is a someday idea. The footage across the showcase floor backs it up.",
      "“Everything you’ll see today, we do now.”",
-     "Build the whole piece on a single quote, and let the drone and floor footage prove it."],
-    ["sXwlyKkVntc","Tenaris · Wedge 529","Tenaris","Energy · Product",
-     "A product video for Tenaris’ Wedge 529 connection, making a technical oilfield product easy to follow.",
-     "A technical product, explained.",""],
-    ["4-IUkT454W0","AWS · Energy Symposium","AWS","Energy · Tech · Events",
-     "Highlights from the AWS Energy Symposium. Events like this are the source material for “Your conference is a year of content.”",
-     "A symposium, made to outlast the day.",""],
-    ["RvRMN0xcNqU","Halliburton Labs · Denver Pitch Day","Halliburton Labs","Energy · Startups",
-     "Highlights from Halliburton Labs’ Pitch Day in Denver, where energy startups pitch to industry leaders. Rooms like this one are where “What I’ve learned putting CEOs on camera” comes from.",
-     "Founders under pressure, on camera.",""],
-    ["5n7nfnLqkE4","Halliburton Labs · New Orleans recap","Halliburton Labs","Energy · Startups · Events",
-     "A recap of Halliburton Labs’ program in New Orleans.",
-     "Two days in New Orleans, in a few minutes.",""],
-    ["5IGhnPHvL8U","Halliburton Labs · Brand video","Halliburton Labs","Energy · Startups",
-     "A brand film for Halliburton Labs, the energy-industry startup accelerator.",
-     "What an accelerator actually does.",""],
-    ["OXp_9dxsbAE","Endress + Hauser · Safety guidelines","Endress + Hauser","Industrial · Safety",
-     "A safety guidelines video for Endress + Hauser, made for people who will actually work by it.",
-     "Safety guidance crews actually watch.",""]
+     "Build the whole piece on a single quote, and let the drone and floor footage prove it."]
   ].map(([yt,title,client,industry,desc,big,call],i)=>({
-    id:"film"+(i+1),track:"V2",kind:"film",start:8+i*8,dur:8,name:title,yt,img:YT.thumb(yt),url:YT.watch(yt),call,
+    id:"film"+(i+1),track:"V2",kind:"film",start:8+i*10,dur:10,name:title,yt,img:YT.thumb(yt),url:YT.watch(yt),call,
     scene:`<div class="scene s-film s-yt"><img class="yt-still" src="${YT.still(yt)}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${YT.thumb(yt)}'"><div class="yt-cap"><div class="big">${big}</div><button class="pb" type="button" data-play="${yt}" aria-label="Play ${title.replace(/"/g,"")}">Play</button></div></div>`,
     title,desc,
     meta:[["Client",client],["Industry",industry]],
@@ -107,11 +89,11 @@ const CLIPS = [
    scene:`<div class="scene s-note"><q>Your CEO doesn’t need a teleprompter. They need a better first question.</q></div>`,
    title:"Short note",desc:"Quick takes, posted first on Threads and LinkedIn.",meta:[["Format","Threads / LinkedIn post"]],act:[]},
 
-  {id:"about",track:"V1",kind:"me",start:122,dur:14,name:"About Trae",
+  {id:"about",track:"V1",kind:"me",start:90,dur:14,name:"About Trae",
    scene:`<div class="scene s-about"><div><h2>About</h2><p>Video producer at Audion in Houston. Dad, Christ Church Sugar Land member, and the person with a camera at every family gathering. In 2025 my son Eli and I served on our first mission trip together, in Jamaica.</p></div></div>`,
    title:"About Trae",desc:"I’ve spent my career behind the camera, from music videos and church productions to energy executives and safety crews. Today I produce for Audion, and I write here to think out loud about where corporate video is going.",
    meta:[["Day job","Producer, Audion"],["Home","Sugar Land, Texas"]],act:[["Follow on LinkedIn ↗︎",LINKEDIN],["Audion ↗︎",AUD]]},
-  {id:"contact",track:"V1",kind:"me",start:136,dur:14,name:"Last frame · Let’s talk",
+  {id:"contact",track:"V1",kind:"me",start:104,dur:16,name:"Last frame · Let’s talk",
    scene:`<div class="scene s-contact"><h2>Let’s <em>talk shop.</em></h2></div>`,
    title:"Let’s talk",desc:"I’m glad to talk about storytelling, trust and corporate video: podcasts, panels, guest posts, or just comparing notes. For video projects, reach the team at Audion.",
    meta:[["LinkedIn",`<a href="${LINKEDIN}" target="_blank" rel="noopener">Send a message ↗︎</a>`],["Video projects",`<a href="${AUD}/contact" target="_blank" rel="noopener">Audion ↗︎</a>`]],

@@ -116,7 +116,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 /* timeline */
 .tl{background:var(--panel)}
 .tl-scroll{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-color:var(--line) transparent}
-.tl-inner{min-width:1350px;position:relative;display:grid;grid-template-columns:116px 1fr}
+.tl-inner{min-width:1080px;position:relative;display:grid;grid-template-columns:116px 1fr}
 .heads{border-right:1px solid var(--line);background:var(--panel)}
 .heads div{height:46px;display:flex;align-items:center;gap:8px;padding:0 12px;border-bottom:1px solid var(--line);color:var(--muted)}
 .heads div b{font:700 11px/1 var(--f-mono);color:var(--fg);width:22px}
@@ -186,7 +186,7 @@ footer a{color:var(--muted);text-decoration:none;margin-right:14px}
   .plain{order:4}
   .s-title .ind{display:none}
   .s-title p{margin-top:8px}
-  .tl-inner{min-width:1125px;grid-template-columns:64px 1fr}
+  .tl-inner{min-width:900px;grid-template-columns:64px 1fr}
   .heads div{height:40px;padding:0 8px;gap:6px;font-size:10px}
   .heads .rul{height:28px}
   .lane{height:40px}
