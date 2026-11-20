@@ -8,8 +8,8 @@ const KIND = {
 /* Site content. To add an essay: copy an essay entry, change id/name/title/desc, set url to its page, and give it a free start time on V1. */
 const LINKEDIN="https://www.linkedin.com/in/traestanley";
 const AUD="https://www.audion.energy", AUDWORK="https://www.audion.energy/our-work";
-const NOT_ON_AUDION=["NJ0TVFfnp4A"]; // videos not shown on Audion's work page
-const YT={thumb:id=>`https://i.ytimg.com/vi/${id}/mqdefault.jpg`, still:id=>`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`, watch:id=>`https://www.youtube.com/watch?v=${id}`};
+const NOT_ON_AUDION=["NJ0TVFfnp4A","WXbC_jUZPZs"]; // videos not shown on Audion's work page
+const YT={thumb:id=>`https://i.ytimg.com/vi/${id}/hqdefault.jpg`, still:id=>`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`, watch:id=>`https://www.youtube.com/watch?v=${id}`};
 const CLIPS = [
   {id:"title",track:"V1",kind:"me",start:0,dur:8,name:"Title card",
    scene:`<div class="scene s-title"><div><h1>TRAE STANLEY</h1><p>Notes on making video that people trust.</p><div class="ind"><span>Storytelling</span><span>Trust on camera</span><span>AI &amp; authenticity</span><span>Energy</span><span>Associations</span></div></div></div>`,
@@ -43,6 +43,10 @@ const CLIPS = [
      "Immigrant and refugee students at a Houston high school work day jobs and go to school at night. A coaching program run by people who were once in their shoes helps them aim higher, and the students tell it in their own words.",
      "Students who work by day and study at night.",
      "Let the students speak for themselves, subtitled, instead of narrating over them. “Last year I couldn’t talk the English. Right now I understand the lesson.”"],
+    ["WXbC_jUZPZs","Gift of Home · A knock on the door","Envoy Mortgage","Mortgage · Community",
+     "The pandemic took a young father’s job managing a bar. Envoy Mortgage’s Gift of Home program shows up on his front lawn to pay his family’s next mortgage payment, and he finds out by reading the letter out loud.",
+     "A knock on the door, and one family’s mortgage paid.",
+     "A reveal like this happens once. Having him read the letter aloud lets the audience find out at the same moment he does, and the cameras are already in place to catch it."],
     ["idK-jLTs3v8","DXPE · Room for the next 100 years","DXP Enterprises","Industrial",
      "DXP opened a 50-acre fabrication campus outside Houston. Underneath the square footage is the real story: a century-old company securing its next hundred years, told by the people who work there.",
      "A 100-year-old company, making room for the next 100.",
@@ -74,7 +78,7 @@ const CLIPS = [
      "A safety guidelines video for Endress + Hauser, made for people who will actually work by it.",
      "Safety guidance crews actually watch.",""]
   ].map(([yt,title,client,industry,desc,big,call],i)=>({
-    id:"film"+(i+1),track:"V2",kind:"film",start:8+i*10,dur:10,name:title,yt,img:YT.thumb(yt),url:YT.watch(yt),call,
+    id:"film"+(i+1),track:"V2",kind:"film",start:8+i*9,dur:9,name:title,yt,img:YT.thumb(yt),url:YT.watch(yt),call,
     scene:`<div class="scene s-film s-yt"><img class="yt-still" src="${YT.still(yt)}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${YT.thumb(yt)}'"><div class="yt-cap"><div class="big">${big}</div><button class="pb" type="button" data-play="${yt}" aria-label="Play ${title.replace(/"/g,"")}">Play</button></div></div>`,
     title,desc,
     meta:[["Client",client],["Industry",industry]],
