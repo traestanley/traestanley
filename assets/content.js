@@ -1,4 +1,4 @@
-const FPS = 24, LEN = 120;
+const FPS = 24, LEN = 140;
 const abs = p => new URL(p, document.baseURI).href; // full URLs, so CSS backgrounds resolve from the page
 const IMG = {}; // project stills, e.g. {name: abs("assets/img/name.jpg")}; use as img:IMG.name and in the scene background
 const KIND = {
@@ -8,7 +8,7 @@ const KIND = {
 /* Site content. To add an essay: copy an essay entry, change id/name/title/desc, set url to its page, and give it a free start time on V1. */
 const LINKEDIN="https://www.linkedin.com/in/traestanley";
 const AUD="https://www.audion.energy", AUDWORK="https://www.audion.energy/our-work";
-const NOT_ON_AUDION=["NJ0TVFfnp4A","WXbC_jUZPZs","EJMjhzlRwcU"]; // videos not shown on Audion's work page
+const NOT_ON_AUDION=["NJ0TVFfnp4A","WXbC_jUZPZs","EJMjhzlRwcU","BRUm3omJ35k"]; // videos not shown on Audion's work page
 const YT={thumb:id=>`https://i.ytimg.com/vi/${id}/hqdefault.jpg`, still:id=>`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`, watch:id=>`https://www.youtube.com/watch?v=${id}`};
 const CLIPS = [
   {id:"title",track:"V1",kind:"me",start:0,dur:8,name:"Title card",
@@ -51,6 +51,10 @@ const CLIPS = [
      "Tenaris’ Coiled Tubes plant went more than 400 days without a recordable accident. The story is told by every level of the plant, from supervisors to the vice president, and each of them credits everyone else.",
      "400 days without an accident, told by the people who did it.",
      "End on the strongest line instead of a logo: “The product is the second most important thing we have. The most important thing is our people.”"],
+    ["BRUm3omJ35k","Turner · Where a flooded building stood","Turner Construction","Construction · Education",
+     "In the middle of the University of Houston campus sat a below-grade building that flooded again and again until it was shut down. Turner demolished it next to occupied buildings and over campus tunnels, then raised a two-story mass-timber food hall in its place without interrupting campus life.",
+     "A building that kept flooding, replaced by a timber showpiece.",
+     "Give each voice a chapter (project manager, superintendent, VDC lead) and carry the build with time-lapse. The detail that sells it: every utility opening was planned before the beams left the shop."],
     ["idK-jLTs3v8","DXPE · Room for the next 100 years","DXP Enterprises","Industrial",
      "DXP opened a 50-acre fabrication campus outside Houston. Underneath the square footage is the real story: a century-old company securing its next hundred years, told by the people who work there.",
      "A 100-year-old company, making room for the next 100.",
@@ -99,11 +103,11 @@ const CLIPS = [
    scene:`<div class="scene s-note"><q>Your CEO doesn’t need a teleprompter. They need a better first question.</q></div>`,
    title:"Short note",desc:"Quick takes, posted first on Threads and LinkedIn.",meta:[["Format","Threads / LinkedIn post"]],act:[]},
 
-  {id:"about",track:"V1",kind:"me",start:90,dur:14,name:"About Trae",
+  {id:"about",track:"V1",kind:"me",start:110,dur:14,name:"About Trae",
    scene:`<div class="scene s-about"><div><h2>About</h2><p>Video producer at Audion in Houston. Dad, Christ Church Sugar Land member, and the person with a camera at every family gathering. In 2025 my son Eli and I served on our first mission trip together, in Jamaica.</p></div></div>`,
    title:"About Trae",desc:"I’ve spent my career behind the camera, from music videos and church productions to energy executives and safety crews. Today I produce for Audion, and I write here to think out loud about where corporate video is going.",
    meta:[["Day job","Producer, Audion"],["Home","Sugar Land, Texas"]],act:[["Follow on LinkedIn ↗︎",LINKEDIN],["Audion ↗︎",AUD]]},
-  {id:"contact",track:"V1",kind:"me",start:104,dur:16,name:"Last frame · Let’s talk",
+  {id:"contact",track:"V1",kind:"me",start:124,dur:16,name:"Last frame · Let’s talk",
    scene:`<div class="scene s-contact"><h2>Let’s <em>talk shop.</em></h2></div>`,
    title:"Let’s talk",desc:"I’m glad to talk about storytelling, trust and corporate video: podcasts, panels, guest posts, or just comparing notes. For video projects, reach the team at Audion.",
    meta:[["LinkedIn",`<a href="${LINKEDIN}" target="_blank" rel="noopener">Send a message ↗︎</a>`],["Video projects",`<a href="${AUD}/contact" target="_blank" rel="noopener">Audion ↗︎</a>`]],
