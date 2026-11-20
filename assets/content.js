@@ -2,7 +2,7 @@ const FPS = 24, LEN = 120;
 const abs = p => new URL(p, document.baseURI).href; // full URLs, so CSS backgrounds resolve from the page
 const IMG = {}; // project stills, e.g. {name: abs("assets/img/name.jpg")}; use as img:IMG.name and in the scene background
 const KIND = {
-  me:{label:"Trae",color:"var(--c-me)"}, film:{label:"Work",color:"var(--c-film)"},
+  me:{label:"Trae",color:"var(--c-me)"}, film:{label:"Producing work",color:"var(--c-film)"},
   family:{label:"Family photos",color:"var(--c-family)"}, essay:{label:"Essay",color:"var(--c-essay)"}, note:{label:"Note",color:"var(--c-note)"}
 };
 /* Site content. To add an essay: copy an essay entry, change id/name/title/desc, set url to its page, and give it a free start time on V1. */
@@ -51,7 +51,7 @@ const CLIPS = [
     id:"film"+(i+1),track:"V2",kind:"film",start:8+i*10,dur:10,name:title,yt,img:YT.thumb(yt),url:YT.watch(yt),
     scene:`<div class="scene s-film s-yt"><img class="yt-still" src="${YT.still(yt)}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${YT.thumb(yt)}'"><div class="yt-cap"><div class="big">${big}</div><button class="pb" type="button" data-play="${yt}" aria-label="Play ${title.replace(/"/g,"")}">Play</button></div></div>`,
     title,desc,
-    meta:[["Client",client],["Industry",industry],["My role","Producer · Shooter · Editor"]],
+    meta:[["Client",client],["Industry",industry]],
     act:[["Watch on YouTube ↗︎",YT.watch(yt)],["Audion’s work ↗︎",AUDWORK]]
   })),
 
