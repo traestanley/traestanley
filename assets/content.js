@@ -2,12 +2,13 @@ const FPS = 24, LEN = 120;
 const abs = p => new URL(p, document.baseURI).href; // full URLs, so CSS backgrounds resolve from the page
 const IMG = {}; // project stills, e.g. {name: abs("assets/img/name.jpg")}; use as img:IMG.name and in the scene background
 const KIND = {
-  me:{label:"Trae",color:"var(--c-me)"}, film:{label:"Work at Audion",color:"var(--c-film)"},
+  me:{label:"Trae",color:"var(--c-me)"}, film:{label:"Work",color:"var(--c-film)"},
   family:{label:"Family photos",color:"var(--c-family)"}, essay:{label:"Essay",color:"var(--c-essay)"}, note:{label:"Note",color:"var(--c-note)"}
 };
 /* Site content. To add an essay: copy an essay entry, change id/name/title/desc, set url to its page, and give it a free start time on V1. */
 const LINKEDIN="https://www.linkedin.com/in/traestanley";
 const AUD="https://www.audion.energy", AUDWORK="https://www.audion.energy/our-work";
+const YT={thumb:id=>`https://i.ytimg.com/vi/${id}/mqdefault.jpg`, still:id=>`https://i.ytimg.com/vi/${id}/maxresdefault.jpg`, watch:id=>`https://www.youtube.com/watch?v=${id}`};
 const CLIPS = [
   {id:"title",track:"V1",kind:"me",start:0,dur:8,name:"Title card",
    scene:`<div class="scene s-title"><div><h1>TRAE STANLEY</h1><p>Notes on making video that people trust.</p><div class="ind"><span>Storytelling</span><span>Trust on camera</span><span>AI &amp; authenticity</span><span>Energy</span><span>Associations</span></div></div></div>`,
@@ -22,7 +23,7 @@ const CLIPS = [
   {id:"essay2",track:"V1",kind:"essay",start:24,dur:16,name:"What I’ve learned putting CEOs on camera",soon:true,
    scene:`<div class="scene s-essay"><div><span class="mono k">Essay · 7 min read</span><h2>What I’ve learned putting CEOs on camera</h2><p>The most powerful person in the room is usually the most nervous one once the light comes on. After years of filming energy executives, I’ve stopped writing them better scripts and started asking them better questions.</p></div></div>`,
    title:"What I’ve learned putting CEOs on camera",desc:"Lessons from filming energy executives: why scripts make leaders sound less believable, and what to do instead.",
-   meta:[["Drawn from","Executive panels and interviews at Audion"],["Read time","7 min"]],act:[]},
+   meta:[["Drawn from","Executive panels and pitch days I’ve filmed"],["Read time","7 min"]],act:[]},
   {id:"essay3",track:"V1",kind:"essay",start:40,dur:16,name:"Your conference is a year of content",soon:true,
    scene:`<div class="scene s-essay"><div><span class="mono k">Essay · 7 min read</span><h2>Your conference is a year of content. Most associations use it for a week.</h2><p>I’ve filmed rooms full of keynotes that vanished the day after the event. With a little planning before the cameras roll, those sessions become member clips, on-demand courses and next year’s registration video.</p></div></div>`,
    title:"Your conference is a year of content",desc:"How associations can treat event video as a year-round asset instead of a recording that sits on a drive.",
@@ -36,30 +37,24 @@ const CLIPS = [
    title:"Shoot once, post for a month",desc:"Thinking in cutdowns: how one shoot becomes a month of native video.",
    meta:[["Why now","Short native video and recurring series formats are growing on LinkedIn"],["Read time","5 min"]],act:[]},
 
-  {id:"film1",track:"V2",kind:"film",start:10,dur:10,name:"Energy · Executive panel",
-   scene:`<div class="scene s-film" style="--g:radial-gradient(90% 90% at 70% 25%,#3A3424 0%,#0A0906 72%)"><div><div class="big">Energy leaders, on camera and at ease.</div></div></div>`,
-   title:"Energy · Executive panel",desc:"Multi-camera coverage of an industry panel with energy-company CEOs. This is where essays like “What I’ve learned putting CEOs on camera” come from.",
-   meta:[["Studio","Audion"],["Industry","Energy"],["Format","Live panel · multi-camera"]],act:[["See Audion’s work ↗︎",AUDWORK]]},
-  {id:"film2",track:"V2",kind:"film",start:28,dur:9,name:"Energy · Product explainer",
-   scene:`<div class="scene s-film" style="--g:radial-gradient(90% 90% at 25% 30%,#1B2E4A 0%,#04070D 72%)"><div><div class="big">A technical oilfield product, explained.</div></div></div>`,
-   title:"Energy · Product explainer",desc:"An animated explainer that makes a technical oilfield product easy to follow, with maps, callouts and motion graphics. Making complex things simple is the job I care about most.",
-   meta:[["Studio","Audion"],["Industry","Energy"],["Format","Motion graphics explainer"]],act:[["See Audion’s work ↗︎",AUDWORK]]},
-  {id:"film3",track:"V2",kind:"film",start:44,dur:9,name:"Construction · Safety training",
-   scene:`<div class="scene s-film" style="--g:radial-gradient(90% 90% at 75% 70%,#2C3A1E 0%,#080B05 72%)"><div><div class="big">Safety training crews actually watch.</div></div></div>`,
-   title:"Construction · Safety training series",desc:"A training series for field crews in construction and industrial work. Filming on job sites is where my thinking on recruiting video started.",
-   meta:[["Studio","Audion"],["Industry","Construction · Industrial safety"],["Format","Training series"]],act:[["See Audion’s work ↗︎",AUDWORK]]},
-  {id:"film4",track:"V2",kind:"film",start:60,dur:8,name:"Healthcare tech · Award profiles",
-   scene:`<div class="scene s-film" style="--g:radial-gradient(90% 90% at 75% 20%,#2E2A55 0%,#0A0910 70%)"><div><div class="big">Honoring the people behind the work.</div></div></div>`,
-   title:"Healthcare tech · Award winner profiles",desc:"Short profiles of award winners at a healthcare technology company. Ten people, ten stories, one event.",
-   meta:[["Studio","Audion"],["Industry","Healthcare · Tech"],["Format","Profile series"]],act:[["See Audion’s work ↗︎",AUDWORK]]},
-  {id:"film5",track:"V2",kind:"film",start:76,dur:7,name:"Education · Conference sessions",
-   scene:`<div class="scene s-film" style="--g:radial-gradient(90% 90% at 25% 25%,#1F3B33 0%,#07100D 72%)"><div><div class="big">The science of learning, filmed for on-demand.</div></div></div>`,
-   title:"Education · Conference sessions",desc:"Sessions with an education researcher on how people learn, produced for on-demand viewing and livestream.",
-   meta:[["Studio","Audion"],["Industry","Education"],["Format","Session films · livestream"]],act:[["See Audion’s work ↗︎",AUDWORK]]},
-  {id:"film6",track:"V2",kind:"film",start:83,dur:7,name:"Associations · Legal conferences",
-   scene:`<div class="scene s-film" style="--g:radial-gradient(90% 90% at 70% 70%,#3E2A1A 0%,#0D0805 72%)"><div><div class="big">Ten sessions, ready for on-demand.</div></div></div>`,
-   title:"Associations · Legal conference video",desc:"Session films and promos for Texas legal associations. The source material for “Your conference is a year of content.”",
-   meta:[["Studio","Audion"],["Industry","Associations"],["Format","Session edits · promos"]],act:[["See Audion’s work ↗︎",AUDWORK]]},
+  ...[
+    ["idK-jLTs3v8","DXPE · Brand video","DXP Enterprises","Industrial","free","A brand film for DXP Enterprises, the Houston-based industrial distributor.","An industrial company, told as a story."],
+    ["sXwlyKkVntc","Tenaris · Wedge 529","Tenaris","Energy · Product","free","A product video for Tenaris’ Wedge 529 connection. Making a technical oilfield product easy to follow is the job I care about most.","A technical product, explained."],
+    ["_oemJ8GP1AI","Tenaris · Coiled tubing, made and shipped","Tenaris","Energy · Manufacturing","free","How Tenaris coiled tubing is made and shipped, filmed on the plant floor. Shooting around live operations is where my thinking on recruiting video for the trades started.","From the plant floor to the field."],
+    ["4-IUkT454W0","AWS · Energy Symposium","AWS","Energy · Tech · Events","free","Highlights from the AWS Energy Symposium. Events like this are the source material for “Your conference is a year of content.”","A symposium, made to outlast the day."],
+    ["RvRMN0xcNqU","Halliburton Labs · Denver Pitch Day","Halliburton Labs","Energy · Startups","bridge","Highlights from Halliburton Labs’ Pitch Day in Denver, where energy startups pitch to industry leaders. Rooms like this one are where “What I’ve learned putting CEOs on camera” comes from.","Founders under pressure, on camera."],
+    ["5n7nfnLqkE4","Halliburton Labs · New Orleans recap","Halliburton Labs","Energy · Startups · Events","audion","A recap of Halliburton Labs’ program in New Orleans, from my first months at Audion.","Two days in New Orleans, in a few minutes."],
+    ["5IGhnPHvL8U","Halliburton Labs · Brand video","Halliburton Labs","Energy · Startups","audion","A brand film for Halliburton Labs, the energy-industry startup accelerator.","What an accelerator actually does."],
+    ["wucQ8KVGqrk","Halliburton · Fractech Expo","Halliburton","Energy · Trade show","audion","Coverage of Halliburton at the Fractech Expo.","A trade-show floor, cut for people who weren’t there."],
+    ["OXp_9dxsbAE","Endress + Hauser · Safety guidelines","Endress + Hauser","Industrial · Safety","audion","A safety guidelines video for Endress + Hauser, made for people who will actually work by it.","Safety guidance crews actually watch."]
+  ].map(([yt,title,client,industry,when,desc,big],i)=>({
+    id:"film"+(i+1),track:"V2",kind:"film",start:8+i*10,dur:10,name:title,yt,img:YT.thumb(yt),url:YT.watch(yt),
+    scene:`<div class="scene s-film s-yt"><img class="yt-still" src="${YT.still(yt)}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${YT.thumb(yt)}'"><div class="yt-cap"><div class="big">${big}</div><button class="pb" type="button" data-play="${yt}" aria-label="Play ${title.replace(/"/g,"")}">Play</button></div></div>`,
+    title,desc,
+    meta:[["Client",client],["Industry",industry],["My role","Producer · Shooter · Editor"],
+          ["Made",{free:"Freelance, before Audion",bridge:"Freelance; a client I later brought to Audion",audion:"At Audion"}[when]]],
+    act:[["Watch on YouTube ↗︎",YT.watch(yt)],...(when==="audion"?[["Audion’s work ↗︎",AUDWORK]]:[])]
+  })),
 
   {id:"note1",track:"A1",kind:"note",start:20,dur:6,name:"Note",
    scene:`<div class="scene s-note"><q>On LinkedIn, upload the video file itself. A YouTube link is a detour most people won’t take.</q></div>`,

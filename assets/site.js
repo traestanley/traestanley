@@ -11,8 +11,9 @@ const pct = s => (s/LEN*100)+"%";
 for(let s=0;s<LEN;s+=10){ const sp=document.createElement("span"); sp.style.left=pct(s); sp.textContent=tc(s).slice(3,8); $("#ruler").appendChild(sp); }
 
 // scenes + clips
+const sceneHTML=c=>c.scene.replace('class="scene','data-id="'+c.id+'" class="scene');
 CLIPS.forEach(c=>{
-  monitor.insertAdjacentHTML("beforeend", c.scene.replace('class="scene','data-id="'+c.id+'" class="scene'));
+  monitor.insertAdjacentHTML("beforeend", sceneHTML(c));
   const b=document.createElement("button");
   b.className="clip"+(c.wave?" wave":"")+(c.img?" thumb":"");
   b.style.cssText=`left:${pct(c.start)};width:calc(${pct(c.dur)} - 2px);--k:${KIND[c.kind].color}`;
@@ -26,12 +27,12 @@ CLIPS.forEach(c=>{
 [["Essays","essay1","essay"],["Notes","note1","note"],["Work","film1","film"],["About","about","me"]].forEach(([l,id,k])=>{
   const b=document.createElement("button"); b.textContent=l; b.dataset.go=id; b.style.setProperty("--k",KIND[k].color); $("#nav").appendChild(b);
 });
-const li=(c)=>c.url?`<li><a href="${c.url}">${c.title}</a></li>`:`<li><button data-go="${c.id}">${c.title}</button>${c.soon?' <span class="tag">Coming soon</span>':''}</li>`;
+const li=(c)=>c.url&&c.kind==="essay"?`<li><a href="${c.url}">${c.title}</a></li>`:`<li><button data-go="${c.id}">${c.title}</button>${c.soon?' <span class="tag">Coming soon</span>':''}</li>`;
 $("#list-a").innerHTML=CLIPS.filter(c=>c.kind==="essay").map(li).join("");
 $("#list-b").innerHTML=CLIPS.filter(c=>c.kind==="film").map(li).join("")+`<li><a href="https://www.audion.energy" target="_blank" rel="noopener">More at audion.energy ↗︎</a></li>`;
 
 function renderInsp(c){
-  if(c.url && !c.act.some(a=>a[1]===c.url)) c.act=[["Read the essay",c.url],...c.act];
+  if(c.kind==="essay" && c.url && !c.act.some(a=>a[1]===c.url)) c.act=[["Read the essay",c.url],...c.act];
   const k=KIND[c.kind];
   insp.style.setProperty("--k",k.color);
   insp.innerHTML=`<div class="kind mono"><i></i>${k.label}${c.soon?' <span class="tag">Coming soon</span>':''}</div>
@@ -43,6 +44,8 @@ function renderInsp(c){
 function select(id,movePlayhead){
   const c=CLIPS.find(x=>x.id===id); if(!c||c===cur) { if(c&&movePlayhead) setT(c.start); return; }
   cur=c;
+  const pl=monitor.querySelector(".scene.is-playing"); // stop a playing video before switching
+  if(pl){ pl.outerHTML=sceneHTML(CLIPS.find(x=>x.id===pl.dataset.id)); monitor.classList.remove("is-playing"); }
   monitor.querySelectorAll(".scene").forEach(s=>s.classList.toggle("on",s.dataset.id===id)); monitor.classList.toggle("light",c.kind==="essay");
   document.querySelectorAll(".clip").forEach(b=>b.classList.toggle("on",b.dataset.id===id));
   $("#o-c").textContent=c.name; $("#o-a").textContent=c.kind==="essay"||c.kind==="note"?"♪ "+c.track:"● "+c.track;
@@ -71,6 +74,11 @@ document.addEventListener("click",e=>{ const g=e.target.closest("[data-go]"); if
   if(go==="copy"){ const txt="hello@traestanley.com"; const done=()=>{g.textContent="Copied";setTimeout(()=>g.textContent="Copy email",1500)};
     try{ navigator.clipboard.writeText(txt).then(done,()=>{}); }catch(_){} return; }
   stop(); select(go,true); if(g.closest(".plain")) window.scrollTo({top:0,behavior:"smooth"}); });
+// play a YouTube video inside the monitor
+document.addEventListener("click",e=>{ const b=e.target.closest("[data-play]"); if(!b) return; stop();
+  const sc=b.closest(".scene"), c=CLIPS.find(x=>x.id===sc.dataset.id);
+  sc.innerHTML=`<iframe src="https://www.youtube-nocookie.com/embed/${b.dataset.play}?autoplay=1&rel=0&playsinline=1" title="${c.title.replace(/"/g,"")}" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowfullscreen></iframe>`;
+  sc.classList.add("is-playing"); monitor.classList.add("is-playing"); });
 document.addEventListener("keydown",e=>{ if(e.target.closest("input,textarea")) return;
   if(e.key==="ArrowRight"){e.preventDefault();step(1)} else if(e.key==="ArrowLeft"){e.preventDefault();step(-1)}
   else if(e.key===" "&&!e.target.closest("button,a")){e.preventDefault(); playing?stop():play();} });
