@@ -38,22 +38,21 @@ const CLIPS = [
    meta:[["Why now","Short native video and recurring series formats are growing on LinkedIn"],["Read time","5 min"]],act:[]},
 
   ...[
-    ["idK-jLTs3v8","DXPE · Brand video","DXP Enterprises","Industrial","free","A brand film for DXP Enterprises, the Houston-based industrial distributor.","An industrial company, told as a story."],
-    ["sXwlyKkVntc","Tenaris · Wedge 529","Tenaris","Energy · Product","free","A product video for Tenaris’ Wedge 529 connection. Making a technical oilfield product easy to follow is the job I care about most.","A technical product, explained."],
-    ["_oemJ8GP1AI","Tenaris · Coiled tubing, made and shipped","Tenaris","Energy · Manufacturing","free","How Tenaris coiled tubing is made and shipped, filmed on the plant floor. Shooting around live operations is where my thinking on recruiting video for the trades started.","From the plant floor to the field."],
-    ["4-IUkT454W0","AWS · Energy Symposium","AWS","Energy · Tech · Events","free","Highlights from the AWS Energy Symposium. Events like this are the source material for “Your conference is a year of content.”","A symposium, made to outlast the day."],
-    ["RvRMN0xcNqU","Halliburton Labs · Denver Pitch Day","Halliburton Labs","Energy · Startups","bridge","Highlights from Halliburton Labs’ Pitch Day in Denver, where energy startups pitch to industry leaders. Rooms like this one are where “What I’ve learned putting CEOs on camera” comes from.","Founders under pressure, on camera."],
-    ["5n7nfnLqkE4","Halliburton Labs · New Orleans recap","Halliburton Labs","Energy · Startups · Events","audion","A recap of Halliburton Labs’ program in New Orleans, from my first months at Audion.","Two days in New Orleans, in a few minutes."],
-    ["5IGhnPHvL8U","Halliburton Labs · Brand video","Halliburton Labs","Energy · Startups","audion","A brand film for Halliburton Labs, the energy-industry startup accelerator.","What an accelerator actually does."],
-    ["wucQ8KVGqrk","Halliburton · Fractech Expo","Halliburton","Energy · Trade show","audion","Coverage of Halliburton at the Fractech Expo.","A trade-show floor, cut for people who weren’t there."],
-    ["OXp_9dxsbAE","Endress + Hauser · Safety guidelines","Endress + Hauser","Industrial · Safety","audion","A safety guidelines video for Endress + Hauser, made for people who will actually work by it.","Safety guidance crews actually watch."]
-  ].map(([yt,title,client,industry,when,desc,big],i)=>({
+    ["idK-jLTs3v8","DXPE · Brand video","DXP Enterprises","Industrial","A brand film for DXP Enterprises, the Houston-based industrial distributor.","An industrial company, told as a story."],
+    ["sXwlyKkVntc","Tenaris · Wedge 529","Tenaris","Energy · Product","A product video for Tenaris’ Wedge 529 connection. Making a technical oilfield product easy to follow is the job I care about most.","A technical product, explained."],
+    ["_oemJ8GP1AI","Tenaris · Coiled tubing, made and shipped","Tenaris","Energy · Manufacturing","How Tenaris coiled tubing is made and shipped, filmed on the plant floor. Shooting around live operations is where my thinking on recruiting video for the trades started.","From the plant floor to the field."],
+    ["4-IUkT454W0","AWS · Energy Symposium","AWS","Energy · Tech · Events","Highlights from the AWS Energy Symposium. Events like this are the source material for “Your conference is a year of content.”","A symposium, made to outlast the day."],
+    ["RvRMN0xcNqU","Halliburton Labs · Denver Pitch Day","Halliburton Labs","Energy · Startups","Highlights from Halliburton Labs’ Pitch Day in Denver, where energy startups pitch to industry leaders. Rooms like this one are where “What I’ve learned putting CEOs on camera” comes from.","Founders under pressure, on camera."],
+    ["5n7nfnLqkE4","Halliburton Labs · New Orleans recap","Halliburton Labs","Energy · Startups · Events","A recap of Halliburton Labs’ program in New Orleans.","Two days in New Orleans, in a few minutes."],
+    ["5IGhnPHvL8U","Halliburton Labs · Brand video","Halliburton Labs","Energy · Startups","A brand film for Halliburton Labs, the energy-industry startup accelerator.","What an accelerator actually does."],
+    ["wucQ8KVGqrk","Halliburton · Fractech Expo","Halliburton","Energy · Trade show","Coverage of Halliburton at the Fractech Expo.","A trade-show floor, cut for people who weren’t there."],
+    ["OXp_9dxsbAE","Endress + Hauser · Safety guidelines","Endress + Hauser","Industrial · Safety","A safety guidelines video for Endress + Hauser, made for people who will actually work by it.","Safety guidance crews actually watch."]
+  ].map(([yt,title,client,industry,desc,big],i)=>({
     id:"film"+(i+1),track:"V2",kind:"film",start:8+i*10,dur:10,name:title,yt,img:YT.thumb(yt),url:YT.watch(yt),
     scene:`<div class="scene s-film s-yt"><img class="yt-still" src="${YT.still(yt)}" alt="" loading="lazy" onerror="this.onerror=null;this.src='${YT.thumb(yt)}'"><div class="yt-cap"><div class="big">${big}</div><button class="pb" type="button" data-play="${yt}" aria-label="Play ${title.replace(/"/g,"")}">Play</button></div></div>`,
     title,desc,
-    meta:[["Client",client],["Industry",industry],["My role","Producer · Shooter · Editor"],
-          ["Made",{free:"Freelance, before Audion",bridge:"Freelance; a client I later brought to Audion",audion:"At Audion"}[when]]],
-    act:[["Watch on YouTube ↗︎",YT.watch(yt)],...(when==="audion"?[["Audion’s work ↗︎",AUDWORK]]:[])]
+    meta:[["Client",client],["Industry",industry],["My role","Producer · Shooter · Editor"]],
+    act:[["Watch on YouTube ↗︎",YT.watch(yt)],["Audion’s work ↗︎",AUDWORK]]
   })),
 
   {id:"note1",track:"A1",kind:"note",start:20,dur:6,name:"Note",
